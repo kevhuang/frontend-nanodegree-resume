@@ -81,6 +81,16 @@
       var contactTwitter = $(HTMLtwitter.replace(/%data%/g, bio.contacts.twitter));
       var contactLocation = $(HTMLlocation.replace(/%data%/g, bio.contacts.location));
       $('#topContacts').append(contactMobile, contactEmail, contactGitHub, contactTwitter, contactLocation);
+
+      var bioPic = $(HTMLbioPic.replace(/%data%/g, bio.biopic));
+      var welcomeMessage = $(HTMLWelcomeMsg.replace(/%data%/g, bio.welcomeMessage));
+      $('#header').append(bioPic, welcomeMessage, $(HTMLskillsStart));
+
+      var skillsUL = $('#skills');
+      bio.skills.forEach(function(skill) {
+        var listItem = $(HTMLskills.replace(/%data%/g, skill));
+        skillsUL.append(listItem);
+      });
     }
   };
 
