@@ -37,8 +37,15 @@
           employer: 'Google',
           title: 'Sr. Janitor',
           location: 'San Francisco, CA',
-          dates: 'Jan 2012 - Dec 2014',
-          description: 'Provided clean toilets'
+          dates: 'Jan 2013 - Dec 2014',
+          description: 'Provided clean toilets for executive team'
+        },
+        {
+          employer: 'Google',
+          title: 'Janitor',
+          location: 'San Francisco, CA',
+          dates: 'Jan 2012 - Dec 2013',
+          description: 'Provided clean toilets for general staff'
         }
       ],
       display: function() {}
