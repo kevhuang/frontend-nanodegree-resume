@@ -60,10 +60,15 @@
   var controller = {
     init: function() {
       bioView.render();
+      workView.render();
     },
 
     getBio: function() {
       return model.bio;
+    },
+
+    getWork: function() {
+      return model.work;
     }
   };
 
@@ -91,6 +96,27 @@
         var listItem = $(HTMLskills.replace(/%data%/g, skill));
         skillsUL.append(listItem);
       });
+    }
+  };
+
+  var workView = {
+    render: function() {
+      var work = controller.getWork();
+      work.jobs.forEach(function(job) {
+        var jobDiv = $(HTMLworkStart);
+        
+        var jobHeader = $((HTMLworkEmployer.replace(/%data%/g, job.employer) + 
+          HTMLworkTitle.replace(/%data%/g, job.title)));
+        jobDiv.append(jobHeader);
+
+        var jobDates = $(HTMLworkDates.replace(/%data%/g, job.dates));
+        var jobLocation = $(HTMLworkLocation.replace(/%data%/g, job.location));
+        var jobDescription = $(HTMLworkDescription.replace(/%data%/g, job.description));
+        jobDiv.append(jobDates, jobLocation, jobDescription);
+
+        $('#workExperience').append(jobDiv);
+      });
+
     }
   };
 
