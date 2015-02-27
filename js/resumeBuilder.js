@@ -5,7 +5,7 @@
       role: 'Web Developer',
       contacts: {
         mobile: '415-555-5555',
-        email: 'kev@kev.com',
+        email: 'kev@kevhuang.com',
         github: 'kevhuang',
         twitter: '@kevhuang',
         location: 'San Francisco'
@@ -70,9 +70,17 @@
   var bioView = {
     render: function() {
       var bio = controller.getBio();
+      
       var headerName = $(HTMLheaderName.replace(/%data%/g, bio.name));
       var headerRole = $(HTMLheaderRole.replace(/%data%/g, bio.role));
       $('#header').prepend(headerName, headerRole);
+
+      var contactMobile = $(HTMLmobile.replace(/%data%/g, bio.contacts.mobile));
+      var contactEmail = $(HTMLemail.replace(/%data%/g, bio.contacts.email));
+      var contactGitHub = $(HTMLgithub.replace(/%data%/g, bio.contacts.github));
+      var contactTwitter = $(HTMLtwitter.replace(/%data%/g, bio.contacts.twitter));
+      var contactLocation = $(HTMLlocation.replace(/%data%/g, bio.contacts.location));
+      $('#topContacts').append(contactMobile, contactEmail, contactGitHub, contactTwitter, contactLocation);
     }
   };
 
