@@ -68,6 +68,7 @@
     init: function() {
       bioView.render();
       workView.render();
+      projectView.render();
     },
 
     getBio: function() {
@@ -76,6 +77,10 @@
 
     getWork: function() {
       return model.work;
+    },
+
+    getProjects: function() {
+      return model.projects;
     }
   };
 
@@ -123,7 +128,27 @@
 
         $('#workExperience').append(jobDiv);
       });
+    }
+  };
 
+  var projectView = {
+    render: function() {
+      var projects = controller.getProjects();
+      projects.projects.forEach(function(project) {
+        var projectDiv = $(HTMLprojectStart);
+
+        var projectTitle = $(HTMLprojectTitle.replace(/%data%/g, project.title));
+        var projectDates = $(HTMLprojectDates.replace(/%data%/g, project.dates));
+        var projectDescription = $(HTMLprojectDescription.replace(/%data%/g, project.description));
+        projectDiv.append(projectTitle, projectDates, projectDescription);
+
+        project.images.forEach(function(image) {
+          var projectImage = $(HTMLprojectImage.replace(/%data%/g, image));
+          projectDiv.append(projectImage);
+        });
+        
+        $('#projects').append(projectDiv);
+      });
     }
   };
 
