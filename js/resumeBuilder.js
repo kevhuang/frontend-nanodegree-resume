@@ -58,10 +58,23 @@
   };
 
   var controller = {
-    init: function() {}
+    init: function() {
+      bioView.render();
+    },
+
+    getBio: function() {
+      return model.bio;
+    }
   };
 
-  var view = {};
+  var bioView = {
+    render: function() {
+      var bio = controller.getBio();
+      var headerName = $(HTMLheaderName.replace(/%data%/g, bio.name));
+      var headerRole = $(HTMLheaderRole.replace(/%data%/g, bio.role));
+      $('#header').prepend(headerName, headerRole);
+    }
+  };
 
   controller.init();
 })();
