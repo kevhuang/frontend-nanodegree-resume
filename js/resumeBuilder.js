@@ -12,8 +12,7 @@
       },
       welcomeMessage: 'Aye yo!',
       skills: ['JavaScript', 'HTML', 'CSS', 'Git', 'jQuery'],
-      biopic: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/1/000/1d8/19c/092273c.jpg',
-      display: function() {}
+      biopic: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/1/000/1d8/19c/092273c.jpg'
     },
 
     education: {
@@ -27,8 +26,7 @@
           url: 'http://www.hackreactor.com/'
         }
       ],
-      onlineCourses: [],
-      display: function() {}
+      onlineCourses: []
     },
 
     work: {
@@ -47,8 +45,7 @@
           dates: 'Jan 2012 - Dec 2013',
           description: 'Provided clean toilets for general staff'
         }
-      ],
-      display: function() {}
+      ]
     },
 
     projects: {
@@ -59,8 +56,7 @@
           description: 'Built a Twitter clone from scratch',
           images: ['http://cdn.socialmediaexaminer.com/wp-content/uploads/2013/04/ck-list-timeline.png']
         }
-      ],
-      display: function() {}
+      ]
     }
   };
 
@@ -69,6 +65,7 @@
       bioView.render();
       workView.render();
       projectView.render();
+      educationView.render();
     },
 
     getBio: function() {
@@ -81,6 +78,10 @@
 
     getProjects: function() {
       return model.projects;
+    },
+
+    getEducation: function() {
+      return model.education;
     }
   };
 
@@ -148,6 +149,25 @@
         });
         
         $('#projects').append(projectDiv);
+      });
+    }
+  };
+
+  var educationView = {
+    render: function() {
+      var education = controller.getEducation();
+      education.schools.forEach(function(school) {
+        var schoolDiv = $(HTMLschoolStart);
+
+        var schoolHeader = $((HTMLschoolName.replace(/%data%/g, school.name) + 
+          HTMLschoolDegree.replace(/%data%/g, school.degree)));
+        var schoolDates = $(HTMLschoolDates.replace(/%data%/g, school.dates));
+        var schoolLocation = $(HTMLschoolLocation.replace(/%data%/g, school.location));
+        var majors = school.majors.join(', ');
+        var schoolMajors = $(HTMLschoolMajor.replace(/%data%/g, majors));
+
+        schoolDiv.append(schoolHeader, schoolDates, schoolLocation, schoolMajors);
+        $('#education').append(schoolDiv);
       });
     }
   };
